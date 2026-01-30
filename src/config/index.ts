@@ -5,6 +5,7 @@ const AppEnvSchema = z.object({
 	LOG_DIR: z.string(),
 	PORT: z.coerce.number(),
 	NODE_ENV: z.enum(["production", "development"]),
+	MIN_AMOUNT: z.coerce.number(),
 });
 
 const RedisEnvSchema = z.object({
@@ -24,10 +25,7 @@ class AppConfig {
 		this.redis = this.validateEnv(nodeEnv, RedisEnvSchema);
 	}
 
-	private validateEnv<T extends ZodRawShape>(
-		env: NodeJS.ProcessEnv,
-		schema: ZodObject<T>,
-	) {
+	private validateEnv<T extends ZodRawShape>(env: NodeJS.ProcessEnv, schema: ZodObject<T>) {
 		try {
 			return schema.parse(env);
 		} catch (error) {

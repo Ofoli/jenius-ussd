@@ -6,6 +6,8 @@ services:
         LOG_DIR: ${LOG_DIR}
     depends_on:
       - cache
+    env_file:
+      - .env
     volumes:
       - ./:/app
       - /app/node_modules

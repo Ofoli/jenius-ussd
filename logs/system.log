@@ -1,0 +1,2 @@
+2026-01-30 15:00:22.355 - system-logger - ERROR {"action":"handle-ussd","details":{}}
+2026-01-30 15:02:18.019 - system-logger - ERROR {"action":"handle-ussd","details":"Handler Not Found: welcome"}
