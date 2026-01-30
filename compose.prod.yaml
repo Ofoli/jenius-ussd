@@ -1,0 +1,31 @@
+services:
+  api:
+    build:
+    context: .
+    args:
+      LOG_DIR: ${LOG_DIR}
+    depends_on:
+      - cache
+    volumes:
+      - ./:/app
+      - /app/node_modules
+      - ${LOG_DIR}:/app/logs
+    command: node dist/index.js
+    ports:
+        - "127.0.0.1:${PORT}:${PORT}"
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://localhost:${PORT}/health >/dev/null 2>&1 || exit 1"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+
+  cache:
+    image: redis:7-alpine
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 5s

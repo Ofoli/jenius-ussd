@@ -1,0 +1,21 @@
+services:
+  api:
+    build:
+      context: .
+      args:
+        LOG_DIR: ${LOG_DIR}
+    depends_on:
+      - cache
+    volumes:
+      - ./:/app
+      - /app/node_modules
+      - ${LOG_DIR}:/app/logs
+    command: npm run api:dev
+    ports:
+        - "127.0.0.1:${PORT}:${PORT}"
+
+  cache:
+    image: redis:7-alpine
+
+
+
