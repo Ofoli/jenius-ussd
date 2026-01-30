@@ -1,0 +1,41 @@
+{
+	"name": "jenius-ussd",
+	"version": "1.0.0",
+	"description": "USSD Application for crowdfunding",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"api:dev": "nodemon -L --exec tsx src/index.ts",
+		"build": "tsc",
+		"start": "tsx src/index.ts",
+		"lint": "biome check .",
+		"format": "biome format ."
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Ofoli/jenius-ussd.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Ofoli/jenius-ussd/issues"
+	},
+	"homepage": "https://github.com/Ofoli/jenius-ussd#readme",
+	"dependencies": {
+		"axios": "^1.13.2",
+		"express": "^5.2.1",
+		"redis": "^5.10.0",
+		"tsx": "^4.21.0",
+		"winston": "^3.19.0",
+		"zod": "^4.3.4"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.3.11",
+		"@types/express": "^5.0.6",
+		"@types/node": "^25.0.3",
+		"nodemon": "^3.1.11",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.9.3"
+	}
+}
