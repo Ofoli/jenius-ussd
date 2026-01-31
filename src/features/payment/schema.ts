@@ -5,7 +5,7 @@ const callbackDataSchema = z.object({
 	order_id: z.string(),
 	amount: z.string(),
 	charges: z.string(),
-	transaction_fee: z.string(),
+	amount_after_charges: z.string(),
 });
 
 export const validateCallbackData = (data: Record<string, string>) =>

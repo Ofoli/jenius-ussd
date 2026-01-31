@@ -22,7 +22,7 @@ export type CallbackData = {
 	status: "COMPLETED" | "FAILED";
 	amount: string;
 	charges: string;
-	transaction_fee: string;
+	amount_after_charges: string;
 };
 
 export type PaymentData = {
