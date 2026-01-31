@@ -1,20 +1,23 @@
 services:
   api:
     build:
-    context: .
-    args:
-      LOG_DIR: ${LOG_DIR}
+      context: .
+      args:
+        LOG_DIR: ${LOG_DIR}
     depends_on:
       - cache
+    env_file:
+      - .env
     volumes:
       - ./:/app
       - /app/node_modules
       - ${LOG_DIR}:/app/logs
-    command: node dist/index.js
+    restart: unless-stopped
+    command: npm run start
     ports:
         - "127.0.0.1:${PORT}:${PORT}"
     healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://localhost:${PORT}/health >/dev/null 2>&1 || exit 1"]
+      test: ["CMD-SHELL", "wget -qO- http://localhost:${PORT}/ >/dev/null 2>&1 || exit 1"]
       interval: 10s
       timeout: 3s
       retries: 5
@@ -22,6 +25,8 @@ services:
 
   cache:
     image: redis:7-alpine
+    env_file:
+      - .env
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
@@ -29,3 +34,6 @@ services:
       timeout: 3s
       retries: 10
       start_period: 5s
+
+
+

@@ -16,7 +16,7 @@ export class ConfirmStage extends StageHandler {
 	async getMenu(session: UssdSessionContext): Promise<MenuResponse> {
 		const amount = await session.retrieve("amount");
 		return {
-			message: `Please confirm your donation of Ghs${amount} to Mfantsipim 150th anniversary. \n1. Confirm \n2. Cancel`,
+			message: `Please confirm your donation of Ghs${amount} to Mfantsipim 150th anniversary.\n\n1. Confirm \n2. Cancel`,
 			continueSession: true,
 		};
 	}
@@ -33,8 +33,7 @@ export class ConfirmStage extends StageHandler {
 		};
 
 		this.paymentService.pay(paymentData);
-		const message =
-			"Your donation has been initiated, please approve the next prompt to complete the payment";
+		const message = "Please approve the next prompt to complete the payment";
 		return new ErrorAlert(message);
 	}
 }
