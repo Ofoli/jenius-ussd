@@ -1,7 +1,7 @@
-import { UssdSessionContext } from "@/ussd/core/session-context";
-import { RedisBasedSessionStore } from "@/ussd/core/session-store";
-import type { StageHandlerMapping } from "@/ussd/core/stage-handlers";
-import type { UssdData } from "@/ussd/core/types";
+import { UssdSessionContext } from "@/features/ussd/core/session-context";
+import { RedisBasedSessionStore } from "@/features/ussd/core/session-store";
+import type { StageHandlerMapping } from "@/features/ussd/core/stage-handlers";
+import type { UssdData } from "@/features/ussd/core/types";
 import type { RedisCache } from "@/utils/cache";
 
 class UssdCoreApp {

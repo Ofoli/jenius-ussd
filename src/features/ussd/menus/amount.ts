@@ -1,8 +1,8 @@
 import { config } from "@/config";
-import type { UssdSessionContext } from "@/ussd/core/session-context";
-import { StageHandler } from "@/ussd/core/stage-handlers";
-import type { MenuResponse } from "@/ussd/core/types";
-import { ErrorAlert } from "@/ussd/menus/error";
+import type { UssdSessionContext } from "@/features/ussd/core/session-context";
+import { StageHandler } from "@/features/ussd/core/stage-handlers";
+import type { MenuResponse } from "@/features/ussd/core/types";
+import { ErrorAlert } from "@/features/ussd/menus/error";
 import { ConfirmStage } from "./confirm";
 
 export class AmountStage extends StageHandler {

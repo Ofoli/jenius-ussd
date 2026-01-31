@@ -1,2 +1,7 @@
 2026-01-30 15:00:22.355 - system-logger - ERROR {"action":"handle-ussd","details":{}}
 2026-01-30 15:02:18.019 - system-logger - ERROR {"action":"handle-ussd","details":"Handler Not Found: welcome"}
+2026-01-30 17:45:52.964 - system-logger - ERROR {"action":"generate token","details":{"status":false,"data":{"success":false,"code":"TOKEN-INVAL-0052","error":{"cause":"basic_auth_header","description":"Invalid value for basic auth header"}}},"data":{"url":"https://api.nalopay.com/clientapi/generate-payment-token/","auth":"fc4c5880d1a5aace483800fde06819b0a83927f73a57eefac3f0e3c2fea712ffbd08faf9a5c4afb0a59b0b35e25202dc0f005c2737bea0b86b55c5be6b6a8070"}}
+2026-01-30 17:45:52.967 - system-logger - ERROR {"action":"process-payment","details":"Token generation failed"}
+2026-01-30 17:48:54.867 - system-logger - ERROR {"action":"generate token","details":{"status":false,"data":{"success":false,"code":"TOKEN-INVAL-0052","error":{"cause":"basic_auth_header","description":"Invalid value for basic auth header"}}},"data":{"url":"https://api.nalopay.com/clientapi/generate-payment-token/","auth":"7226cb55a906b94dd73586ca9b7c4b7766da2da072b4caeb1dd26220367c2bf625af18d3f11a2051fccbe8068d53136b1413377cf03516d386d420065269fced"}}
+2026-01-30 17:48:54.869 - system-logger - ERROR {"action":"process-payment","details":"Token generation failed"}
+2026-01-31 11:36:35.566 - system-logger - INFO {"action":"process-callback","data":{"status":"FAILED","order_id":"WnKbYUAZh2jWo8JWERpu9k","amount":"1.00","charges":"0.00","transaction_fee":"0.00"}}

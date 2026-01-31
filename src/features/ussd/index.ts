@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
-import { createUssdApplication } from "@/ussd/core/index";
-import { type StageHandler, StageHandlerMapping } from "@/ussd/core/stage-handlers";
-import type { UssdData } from "@/ussd/core/types";
+import { createUssdApplication } from "@/features/ussd/core/index";
+import { type StageHandler, StageHandlerMapping } from "@/features/ussd/core/stage-handlers";
+import type { UssdData } from "@/features/ussd/core/types";
 import { redisCache } from "@/utils/cache";
 import { getLogger } from "@/utils/logger";
 import { AmountStage } from "./menus/amount";

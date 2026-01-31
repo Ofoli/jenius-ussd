@@ -1,10 +1,10 @@
 import { config } from "@/config";
-import type { UssdSessionContext } from "@/ussd/core/session-context";
-import { StageHandler } from "@/ussd/core/stage-handlers";
-import type { MenuResponse } from "@/ussd/core/types";
-import { AmountStage } from "@/ussd/menus/amount";
-import { ConfirmStage } from "@/ussd/menus/confirm";
-import { ErrorAlert } from "@/ussd/menus/error";
+import type { UssdSessionContext } from "@/features/ussd/core/session-context";
+import { StageHandler } from "@/features/ussd/core/stage-handlers";
+import type { MenuResponse } from "@/features/ussd/core/types";
+import { AmountStage } from "@/features/ussd/menus/amount";
+import { ConfirmStage } from "@/features/ussd/menus/confirm";
+import { ErrorAlert } from "@/features/ussd/menus/error";
 
 export class WelcomeStage extends StageHandler {
 	stage: string = "welcome";

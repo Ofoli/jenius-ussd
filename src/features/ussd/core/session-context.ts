@@ -1,5 +1,10 @@
-import type { BaseSessionStore } from "@/ussd/core/session-store";
-import type { MenuResponse, UssdData, UssdInputData, UssdSession } from "@/ussd/core/types";
+import type { BaseSessionStore } from "@/features/ussd/core/session-store";
+import type {
+	MenuResponse,
+	UssdData,
+	UssdInputData,
+	UssdSession,
+} from "@/features/ussd/core/types";
 
 export class UssdSessionContext {
 	private store: BaseSessionStore;

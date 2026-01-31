@@ -1,6 +1,6 @@
-import type { UssdSessionContext } from "@/ussd/core/session-context";
-import { StageHandler } from "@/ussd/core/stage-handlers";
-import type { MenuResponse } from "@/ussd/core/types";
+import type { UssdSessionContext } from "@/features/ussd/core/session-context";
+import { StageHandler } from "@/features/ussd/core/stage-handlers";
+import type { MenuResponse } from "@/features/ussd/core/types";
 
 export class ErrorAlert extends StageHandler {
 	stage: string = "error";

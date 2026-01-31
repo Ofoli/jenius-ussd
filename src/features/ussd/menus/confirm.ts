@@ -1,3 +1,4 @@
+import { NaloPaymentService } from "@/services/payment";
 import type { UssdSessionContext } from "../core/session-context";
 import { StageHandler } from "../core/stage-handlers";
 import type { MenuResponse } from "../core/types";
@@ -5,6 +6,12 @@ import { ErrorAlert } from "./error";
 
 export class ConfirmStage extends StageHandler {
 	stage: string = "confirm";
+
+	paymentService: NaloPaymentService;
+	constructor() {
+		super();
+		this.paymentService = new NaloPaymentService();
+	}
 
 	async getMenu(session: UssdSessionContext): Promise<MenuResponse> {
 		const amount = await session.retrieve("amount");
@@ -22,16 +29,12 @@ export class ConfirmStage extends StageHandler {
 		const paymentData = {
 			msisdn: ussd.msisdn,
 			network: ussd.network,
-			amount: await session.retrieve("amount"),
+			amount: Number(await session.retrieve("amount")),
 		};
 
-		this.pay(paymentData);
+		this.paymentService.pay(paymentData);
 		const message =
 			"Your donation has been initiated, please approve the next prompt to complete the payment";
 		return new ErrorAlert(message);
-	}
-
-	private async pay(_: Record<string, string>) {
-		return;
 	}
 }

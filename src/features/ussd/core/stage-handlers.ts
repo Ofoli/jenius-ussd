@@ -1,5 +1,5 @@
-import type { UssdSessionContext } from "@/ussd/core/session-context";
-import type { MenuResponse } from "@/ussd/core/types";
+import type { UssdSessionContext } from "@/features/ussd/core/session-context";
+import type { MenuResponse } from "@/features/ussd/core/types";
 
 export abstract class StageHandler {
 	abstract stage: string;

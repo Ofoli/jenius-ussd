@@ -6,6 +6,8 @@ const AppEnvSchema = z.object({
 	PORT: z.coerce.number(),
 	NODE_ENV: z.enum(["production", "development"]),
 	MIN_AMOUNT: z.coerce.number(),
+	DATABASE_URL: z.string(),
+	DATABASE_AUTH_TOKEN: z.string(),
 });
 
 const RedisEnvSchema = z.object({
@@ -13,16 +15,26 @@ const RedisEnvSchema = z.object({
 	REDIS_PORT: z.coerce.number(),
 });
 
+const PaymentEnvSchema = z.object({
+	NALO_HOST: z.url(),
+	NALO_MERCHANT: z.string(),
+	NALO_SECRET_KEY: z.string(),
+	NALO_AUTH_KEY: z.string(),
+	NALO_CALLBACK_URL: z.url(),
+});
+
 type AppEnv = z.infer<typeof AppEnvSchema>;
 type RedisEnv = z.infer<typeof RedisEnvSchema>;
-
+type PaymentEnv = z.infer<typeof PaymentEnvSchema>;
 class AppConfig {
 	app: AppEnv;
 	redis: RedisEnv;
+	payment: PaymentEnv;
 
 	constructor(nodeEnv: NodeJS.ProcessEnv) {
 		this.app = this.validateEnv(nodeEnv, AppEnvSchema);
 		this.redis = this.validateEnv(nodeEnv, RedisEnvSchema);
+		this.payment = this.validateEnv(nodeEnv, PaymentEnvSchema);
 	}
 
 	private validateEnv<T extends ZodRawShape>(env: NodeJS.ProcessEnv, schema: ZodObject<T>) {

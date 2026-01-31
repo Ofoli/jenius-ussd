@@ -1,4 +1,4 @@
-import type { UssdSession } from "@/ussd/core/types";
+import type { UssdSession } from "@/features/ussd/core/types";
 import type { RedisCache } from "@/utils/cache";
 
 export abstract class BaseSessionStore {
