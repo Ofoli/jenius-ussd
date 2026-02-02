@@ -23,18 +23,29 @@ const PaymentEnvSchema = z.object({
 	NALO_CALLBACK_URL: z.url(),
 });
 
+const SmsEnvSchema = z.object({
+	HOST: z.url(),
+	KEY: z.string(),
+	SENDER: z.string(),
+	TEMPLATE: z.string(),
+	CALLBACK_URL: z.url(),
+});
+
 type AppEnv = z.infer<typeof AppEnvSchema>;
 type RedisEnv = z.infer<typeof RedisEnvSchema>;
 type PaymentEnv = z.infer<typeof PaymentEnvSchema>;
+type SmsEnv = z.infer<typeof SmsEnvSchema>;
 class AppConfig {
 	app: AppEnv;
 	redis: RedisEnv;
 	payment: PaymentEnv;
+	sms: SmsEnv;
 
 	constructor(nodeEnv: NodeJS.ProcessEnv) {
 		this.app = this.validateEnv(nodeEnv, AppEnvSchema);
 		this.redis = this.validateEnv(nodeEnv, RedisEnvSchema);
 		this.payment = this.validateEnv(nodeEnv, PaymentEnvSchema);
+		this.sms = this.validateEnv(nodeEnv, SmsEnvSchema);
 	}
 
 	private validateEnv<T extends ZodRawShape>(env: NodeJS.ProcessEnv, schema: ZodObject<T>) {

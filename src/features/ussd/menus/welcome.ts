@@ -11,7 +11,7 @@ export class WelcomeStage extends StageHandler {
 
 	async getMenu(_: UssdSessionContext): Promise<MenuResponse> {
 		const message =
-			"Welcome to Mfantsipim 150th anniversary donation platform\n\n Please select amount \n1. Ghs50 \n2. Ghs100 \n3. Ghs150 \n4. Enter other amount";
+			"Welcome to the Official Mfantsipim 150th Anniversary Donation Platform\n\n Please select amount \n1. Ghs50 \n2. Ghs100 \n3. Ghs150 \n4. Enter other amount";
 		return { message, continueSession: true };
 	}
 

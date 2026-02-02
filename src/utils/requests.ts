@@ -11,9 +11,6 @@ type ErrorResponse = {
 };
 
 export class Request {
-	test() {
-		return null;
-	}
 	static async post<T extends Record<string, unknown>>(
 		url: string,
 		values: T,
@@ -22,10 +19,17 @@ export class Request {
 		try {
 			const token = headers.token ?? "";
 			const auth = headers.auth ?? "";
-			const { data } = await axios.post(url, values, {
-				headers: { "x-api-key": token, token, Authorization: `Basic ${auth}` },
-			});
-			return { status: true, data };
+			const hasHeaders = Object.keys(headers).length > 0;
+
+			if (hasHeaders) {
+				const { data } = await axios.post(url, values, {
+					headers: { "x-api-key": token, token, Authorization: `Basic ${auth}` },
+				});
+				return { status: true, data };
+			} else {
+				const { data } = await axios.post(url, values);
+				return { status: true, data };
+			}
 		} catch (err) {
 			const { response } = err as AxiosError;
 			const { message } = err as Error;

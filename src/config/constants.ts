@@ -1,4 +1,4 @@
-export const LOGGERS = ["system"] as const;
+export const LOGGERS = ["system", "sms"] as const;
 export const STATUSES = {
 	paid: "PAID",
 	pending: "PENDING",

@@ -2,6 +2,7 @@ import crypto from "node:crypto";
 import type winston from "winston";
 import { NETWORKS, STATUSES } from "@/config/constants";
 import { NaloPaymentGateway } from "@/services/gateway";
+import { NaloSmsService } from "@/services/sms";
 import { TransactionService } from "@/services/transaction";
 import type { CallbackData, Gateway, NaloResponse, PaymentData } from "@/services/types";
 import { getLogger } from "@/utils/logger";
@@ -18,10 +19,12 @@ export abstract class PaymentService {
 export class NaloPaymentService extends PaymentService {
 	tokenService: PaymentTokenService;
 	transactionService: TransactionService;
+	smsService: NaloSmsService;
 	constructor() {
 		super();
 		this.tokenService = new PaymentTokenService(this.logger);
 		this.transactionService = new TransactionService();
+		this.smsService = new NaloSmsService();
 	}
 
 	public pay(data: PaymentData) {
@@ -41,6 +44,10 @@ export class NaloPaymentService extends PaymentService {
 
 			const updatedStatus = this.toInternalStatus(data.status);
 			await this.transactionService.update(trans.id, { status: updatedStatus });
+
+			if (updatedStatus === STATUSES.paid) {
+				this.smsService.send(trans.amount.toFixed(2), trans.msisdn);
+			}
 
 			return { status: 200, message: "ok" };
 		} catch (err) {

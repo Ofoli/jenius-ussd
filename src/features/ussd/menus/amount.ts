@@ -1,4 +1,3 @@
-import { config } from "@/config";
 import type { UssdSessionContext } from "@/features/ussd/core/session-context";
 import { StageHandler } from "@/features/ussd/core/stage-handlers";
 import type { MenuResponse } from "@/features/ussd/core/types";
@@ -30,15 +29,10 @@ export class AmountStage extends StageHandler {
 
 	private validateAmount(userData: string) {
 		const amount = Number(userData);
-		if (Number.isNaN(amount))
+		if (Number.isNaN(amount) || amount < 1)
 			return {
 				success: false,
 				message: "Invalid amount, please enter a valid amount",
-			};
-		if (amount < config.app.MIN_AMOUNT)
-			return {
-				success: false,
-				message: `Please enter Ghs${config.app.MIN_AMOUNT} or more`,
 			};
 		return {
 			success: true,
@@ -48,7 +42,7 @@ export class AmountStage extends StageHandler {
 
 	private async getMessage(session: UssdSessionContext) {
 		const message = await session.retrieve(this.messageKey);
-		if (!message) return `Please enter any amount from Ghs${config.app.MIN_AMOUNT}`;
+		if (!message) return `Please enter any amount`;
 		return message;
 	}
 }
