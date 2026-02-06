@@ -120,25 +120,37 @@ export class NaloPaymentService extends PaymentService {
 	private async callNaloApi(
 		payload: ReturnType<NaloPaymentService["generatePaymentPayload"]>,
 	): Promise<NaloResponse | null> {
+		const event: Record<string, unknown> = {
+			action: "call-nalo-payment-api",
+			status: "pending",
+			data: payload,
+			startedAt: new Date().toISOString(),
+			endedAt: null,
+		};
+
 		const token = await this.tokenService.retrieve();
-		if (!token) throw new Error("Token generation failed");
+		if (!token) {
+			event.status = "error";
+			event.details = "Token generation failed";
+			event.endedAt = new Date().toISOString();
+			this.logger.info(event);
+			throw new Error("Token generation failed");
+		}
 
 		const url = `${this.gateway.url}/collection/`;
-
 		const response = await Request.post(url, payload, { token });
 		if (!response.status) {
-			const data = {
-				amount: payload.amount,
-				orderId: payload.reference,
-				hash: payload.trans_hash,
-			};
-			this.logger.error({
-				action: "call-nalo-payment-api",
-				details: response,
-				data,
-			});
+			event.status = "error";
+			event.details = response;
+			event.endedAt = new Date().toISOString();
+			this.logger.info(event);
 			return null;
 		}
+
+		event.status = "success";
+		event.details = response;
+		event.endedAt = new Date().toISOString();
+		this.logger.info(event);
 
 		return response.data as NaloResponse;
 	}
