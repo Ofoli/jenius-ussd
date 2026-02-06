@@ -3,8 +3,8 @@ import type { UssdSessionContext } from "@/features/ussd/core/session-context";
 import { StageHandler } from "@/features/ussd/core/stage-handlers";
 import type { MenuResponse } from "@/features/ussd/core/types";
 import { AmountStage } from "@/features/ussd/menus/amount";
-import { ConfirmStage } from "@/features/ussd/menus/confirm";
 import { ErrorAlert } from "@/features/ussd/menus/error";
+import { NameStage } from "@/features/ussd/menus/name";
 
 export class WelcomeStage extends StageHandler {
 	stage: string = "welcome";
@@ -26,7 +26,7 @@ export class WelcomeStage extends StageHandler {
 
 		const amount = this.extractAmount(ussd.userData);
 		await session.update("amount", amount);
-		return new ConfirmStage();
+		return new NameStage();
 	}
 
 	private extractAmount(option: string) {

@@ -29,6 +29,7 @@ export class ConfirmStage extends StageHandler {
 		const paymentData = {
 			msisdn: ussd.msisdn,
 			network: ussd.network,
+			name: await session.retrieve("name"),
 			amount: Number(await session.retrieve("amount")),
 		};
 

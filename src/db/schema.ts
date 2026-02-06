@@ -11,6 +11,7 @@ export const transactions = sqliteTable("transactions", {
 		.primaryKey()
 		.$defaultFn(() => crypto.randomUUID()),
 	msisdn: text("msisdn").notNull(),
+	name: text("name").notNull().default("Anonymous"),
 	amount: integer("amount").notNull(),
 	reference: text("reference")
 		.notNull()

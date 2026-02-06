@@ -26,6 +26,7 @@ export type CallbackData = {
 };
 
 export type PaymentData = {
+	name: string;
 	msisdn: string;
 	amount: number;
 	network: string;

@@ -1,8 +1,7 @@
 import type { UssdSessionContext } from "@/features/ussd/core/session-context";
 import { StageHandler } from "@/features/ussd/core/stage-handlers";
 import type { MenuResponse } from "@/features/ussd/core/types";
-import { ConfirmStage } from "./confirm";
-
+import { NameStage } from "@/features/ussd/menus/name";
 export class AmountStage extends StageHandler {
 	stage: string = "amount";
 	messageKey: string = "amountMessage";
@@ -24,7 +23,7 @@ export class AmountStage extends StageHandler {
 		}
 		await session.update("amount", response.amount as string);
 
-		return new ConfirmStage();
+		return new NameStage();
 	}
 
 	private validateAmount(userData: string) {
