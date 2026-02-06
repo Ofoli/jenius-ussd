@@ -8,6 +8,13 @@
       "when": 1769795048741,
       "tag": "0000_sharp_luckman",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1770380866514,
+      "tag": "0001_greedy_scarlet_witch",
+      "breakpoints": true
     }
   ]
 }
