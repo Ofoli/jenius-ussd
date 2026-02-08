@@ -9,6 +9,7 @@ const AppEnvSchema = z.object({
 	DATABASE_URL: z.string(),
 	DATABASE_AUTH_TOKEN: z.string(),
 	API_KEY: z.string(),
+	FRONTEND_URL: z.url(),
 });
 
 const RedisEnvSchema = z.object({

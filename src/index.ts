@@ -1,3 +1,4 @@
+import cors from "cors";
 import type { Application } from "express";
 import express from "express";
 import { config } from "@/config";
@@ -12,6 +13,7 @@ import { handleUssd } from "@/features/ussd/index";
 const port = config.app.PORT;
 const app: Application = express();
 
+app.use(cors({ origin: config.app.FRONTEND_URL }));
 app.use(express.json());
 
 app.post("/api/ussd/", handleUssd);
