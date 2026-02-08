@@ -8,6 +8,7 @@ const AppEnvSchema = z.object({
 	MIN_AMOUNT: z.coerce.number(),
 	DATABASE_URL: z.string(),
 	DATABASE_AUTH_TOKEN: z.string(),
+	API_KEY: z.string(),
 });
 
 const RedisEnvSchema = z.object({
