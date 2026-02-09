@@ -34,7 +34,7 @@ export async function retrieveTransactions(req: Request, res: Response) {
 		success: true,
 		data: {
 			transactions: data,
-			total,
+			pagination: { total, offset, limit },
 		},
 	});
 }
